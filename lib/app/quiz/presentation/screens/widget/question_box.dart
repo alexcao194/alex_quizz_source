@@ -7,9 +7,10 @@ class QuestionBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Container(
-      height: 200,
-      width: 350,
+      height: size.height * 0.3,
+      width: size.width * 0.9,
       decoration: BoxDecoration(
           border: Border.all(
             color: Colors.black12,

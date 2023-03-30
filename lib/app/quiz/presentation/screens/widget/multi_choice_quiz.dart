@@ -3,6 +3,7 @@ import 'package:alex_quizz/app/quiz/presentation/bloc/quiz/quiz_bloc.dart';
 import 'package:alex_quizz/core/services/app_router/app_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_math_fork/flutter_math.dart';
 
 import 'question_box.dart';
 
@@ -46,7 +47,7 @@ class _MultiChoiceQuizState extends State<MultiChoiceQuiz> {
                 content: Center(
                   child: SingleChildScrollView(child: Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Text(widget.quiz),
+                    child: buildTex(widget.quiz.split(r"$")),
                   )),
                 ),
               ),
@@ -68,7 +69,7 @@ class _MultiChoiceQuizState extends State<MultiChoiceQuiz> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Text(widget.answer1),
+                      child: buildTex(widget.answer1.split(r"$")),
                     ),
                   ),
                 ),
@@ -87,7 +88,7 @@ class _MultiChoiceQuizState extends State<MultiChoiceQuiz> {
                     radius: 10.0,
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Text(widget.answer2),
+                      child: buildTex(widget.answer2.split(r"$")),
                     ),
                   ),
                 ),
@@ -110,7 +111,7 @@ class _MultiChoiceQuizState extends State<MultiChoiceQuiz> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Text(widget.answer3),
+                      child: buildTex(widget.answer3.split(r"$")),
                     ),
                   ),
                 ),
@@ -129,7 +130,7 @@ class _MultiChoiceQuizState extends State<MultiChoiceQuiz> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: Text(widget.answer4),
+                      child: buildTex(widget.answer4.split(r"$")),
                     ),
                   ),
                 ),
@@ -158,6 +159,22 @@ class _MultiChoiceQuizState extends State<MultiChoiceQuiz> {
               color: Colors.white)),
         ),
       ),
+    );
+  }
+
+  Widget buildTex(List<String> tex) {
+    var listTex = <Widget>[];
+    int sizeOfListTex = tex.length;
+    for(int i = 0; i < sizeOfListTex; i++) {
+      if(i % 2 == 0) {
+        listTex.add(Text(tex[i]));
+      } else {
+        listTex.add(Math.tex(tex[i]));
+      }
+    }
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: listTex
     );
   }
 }
