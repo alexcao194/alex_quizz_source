@@ -1,3 +1,4 @@
+import 'package:alex_quizz/app/home/presentation/screens/widgets/home_app_bar.dart';
 import 'package:alex_quizz/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +36,7 @@ class _PollScreenState extends State<PollScreen> {
   Widget build(BuildContext context) {
     controllers.clear();
     return Scaffold(
+      appBar: HomeAppBar(context: context),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.send),
         onPressed: () {
@@ -59,31 +61,32 @@ class _PollScreenState extends State<PollScreen> {
                       controllers.add(controller);
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                buildTex(context, pollState.questions[index].split(r"$")),
-                                const SizedBox(height: 8.0),
-                                TextFormField(
-                                  controller: controllers[index],
-                                  maxLines: 5,
-                                  minLines: 1,
-                                  validator: (value) {
-                                    if(value == null || value.isEmpty) {
-                                      return "Please fill this field";
-                                    }
-                                    return null;
-                                  },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            buildTex(context, pollState.questions[index].split(r"$")),
+                            const SizedBox(height: 8.0),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.0)
+                              ),
+                              child: TextFormField(
+                                controller: controllers[index],
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none
                                 ),
-                              ],
+                                maxLines: 5,
+                                minLines: 1,
+                                validator: (value) {
+                                  if(value == null || value.isEmpty) {
+                                    return "Please fill this field";
+                                  }
+                                  return null;
+                                },
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       );
                     },

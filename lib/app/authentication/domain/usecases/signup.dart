@@ -17,7 +17,7 @@ class Signup {
       return const Failure(message: 'Password is empty');
     }
     if(group == 0) {
-      return const Failure(message: 'invalid group');
+      return const Failure(message: 'Invalid group');
     }
    return await repositories.signup(email.toLowerCase(), account.password.toUpperCase(), group, account.id.toUpperCase());
   }
