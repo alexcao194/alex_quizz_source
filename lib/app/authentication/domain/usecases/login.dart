@@ -1,7 +1,5 @@
-import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../entities/account.dart';
-import '../entities/user.dart';
 import '../repositories/repositories.dart';
 
 class Login {
@@ -15,6 +13,6 @@ class Login {
     if(account.password.isEmpty) {
       return const Failure(message: 'Password is empty');
     }
-    return await repositories.login(account.id, account.password);
+    return await repositories.login(account.id.toUpperCase(), account.password.toUpperCase());
   }
 }

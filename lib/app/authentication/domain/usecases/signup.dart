@@ -19,6 +19,6 @@ class Signup {
     if(group == 0) {
       return const Failure(message: 'invalid group');
     }
-   return await repositories.signup(email, account.password, group, account.id);
+   return await repositories.signup(email.toLowerCase(), account.password.toUpperCase(), group, account.id.toUpperCase());
   }
 }
