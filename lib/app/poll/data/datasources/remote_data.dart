@@ -25,12 +25,23 @@ class RemoteDataImpl extends RemoteData {
     for(var data in response.data) {
       questions.add(data);
     }
+    if(questions.isEmpty) {
+      throw DioError(requestOptions: RequestOptions(path: 'get'), error: 'poll-is-empty');
+    }
     return questions;
   }
 
   @override
-  Future<void> submit(List<String> answers, String ip, String token) {
-    // TODO: implement submit
-    throw UnimplementedError();
+  Future<void> submit(List<String> answers, String ip, String token) async {
+    await dio.post('http://$ip/submit-poll',
+      options: Options(
+        headers: {
+          'x-access-token' : token,
+        }
+      ),
+      queryParameters: {
+        "answers" : answers
+      }
+    );
   }
 }

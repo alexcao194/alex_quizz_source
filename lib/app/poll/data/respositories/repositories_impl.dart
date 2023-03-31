@@ -22,8 +22,12 @@ class RepositoriesImpl extends Repositories {
   }
 
   @override
-  Future<Failure?> submit(List<String> answers) {
-    // TODO: implement submit
-    throw UnimplementedError();
+  Future<Failure?> submit(List<String> answers) async {
+    try {
+      await remoteData.submit(answers, coreCacheData.getIP4(), coreCacheData.getToken().token);
+    } on DioError catch(e) {
+      return Failure(message: ' '.join(e.error.toString().split(RegExp(r'[-]'))).caption());
+    }
+    return null;
   }
 }

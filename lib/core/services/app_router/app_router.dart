@@ -28,7 +28,7 @@ class AppRouter {
       case AppRoutes.quiz:
         return MaterialPageRoute(builder: (_) => const QuizScreen());
       case AppRoutes.poll:
-        return MaterialPageRoute(builder: (_) => const PollScreen());
+        return MaterialPageRoute(builder: (_) => PollScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
