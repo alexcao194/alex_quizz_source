@@ -1,5 +1,6 @@
 import 'package:alex_quizz/app/authentication/presentation/bloc/ip/ip_cubit.dart';
 import 'package:alex_quizz/app/checkin/presentation/bloc/checkin/check_in_cubit.dart';
+import 'package:alex_quizz/app/contest/presentation/bloc/test_bloc/test_bloc.dart';
 import 'package:alex_quizz/app/poll/presentation/bloc/poll_bloc.dart';
 import 'package:alex_quizz/app/quiz/presentation/bloc/quiz/quiz_bloc.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,8 @@ void main() async {
             BlocProvider(create: (_) => di.sl<CheckInCubit>()),
             BlocProvider(create: (_) => di.sl<IpCubit>()),
             BlocProvider(create: (_) => di.sl<QuizBloc>()),
-            BlocProvider(create: (_) => di.sl<PollBloc>())
+            BlocProvider(create: (_) => di.sl<PollBloc>()),
+            BlocProvider(create: (_) => di.sl<TestBloc>())
           ],
           child: const MyApp()
       )

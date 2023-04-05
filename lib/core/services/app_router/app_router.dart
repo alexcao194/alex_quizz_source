@@ -1,3 +1,4 @@
+import 'package:alex_quizz/app/contest/presentation/screens/contest_screen.dart';
 import 'package:alex_quizz/app/poll/presentation/screens/poll_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,9 @@ class AppRouter {
       case AppRoutes.quiz:
         return MaterialPageRoute(builder: (_) => const QuizScreen());
       case AppRoutes.poll:
-        return MaterialPageRoute(builder: (_) => PollScreen());
+        return MaterialPageRoute(builder: (_) => const PollScreen());
+      case AppRoutes.test:
+        return MaterialPageRoute(builder: (_) => const TestScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
@@ -64,4 +67,5 @@ class AppRoutes {
   static const String checkIn = '/check_in';
   static const String quiz = '/quiz';
   static const String poll = '/poll';
+  static const String test = '/test';
 }

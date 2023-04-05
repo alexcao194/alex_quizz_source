@@ -7,7 +7,7 @@ import 'package:flutter_math_fork/flutter_math.dart';
 import '../bloc/poll_bloc.dart';
 
 class PollScreen extends StatefulWidget {
-  PollScreen({Key? key}) : super(key: key);
+  const PollScreen({Key? key}) : super(key: key);
 
   @override
   State<PollScreen> createState() => _PollScreenState();
@@ -22,7 +22,6 @@ class _PollScreenState extends State<PollScreen> {
   void initState() {
     super.initState();
   }
-
 
   @override
   void dispose() {

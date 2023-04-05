@@ -1,4 +1,5 @@
 import 'package:alex_quizz/app/checkin/presentation/screens/check_in_screen.dart';
+import 'package:alex_quizz/app/contest/presentation/bloc/test_bloc/test_bloc.dart';
 import 'package:alex_quizz/app/poll/presentation/bloc/poll_bloc.dart';
 import 'package:alex_quizz/app/quiz/presentation/bloc/quiz/quiz_bloc.dart';
 import 'package:alex_quizz/config/app_colors.dart';
@@ -50,7 +51,13 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       BlocProvider.of<QuizBloc>(context).add(const QuizEventGetResult());
                     }),
-                const HomeItem(header: Icon(Icons.question_mark), label: 'Contest'),
+                 HomeItem(
+                    header: const Icon(Icons.question_mark),
+                    label: 'Contest',
+                  onTap: () {
+                      BlocProvider.of<TestBloc>(context).add(const TestEventGetInfo());
+                  },
+                ),
               ],
             ),
           ],

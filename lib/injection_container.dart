@@ -44,6 +44,14 @@ import 'app/poll/domain/repositories/repositories.dart' as po;
 import 'app/poll/domain/usecases/get.dart' as po;
 import 'app/poll/domain/usecases/submit.dart' as po;
 
+import 'app/contest/data/datasources/remote_data.dart' as co;
+import 'app/contest/data/respositories/repositories_impl.dart' as co;
+import 'app/contest/domain/repositories/repositories.dart' as co;
+import 'app/contest/domain/usecases/get.dart' as co;
+import 'app/contest/domain/usecases/submit.dart' as co;
+import 'app/contest/domain/usecases/get_info.dart' as co;
+import 'app/contest/presentation/bloc/test_bloc/test_bloc.dart' as co;
+
 
 
 import 'package:get_it/get_it.dart';
@@ -81,7 +89,11 @@ Future<void> init() async {
     get: sl(),
     submit: sl()
   ));
-
+  sl.registerFactory(() => co.TestBloc(
+    get: sl(),
+    submit: sl(),
+    getInfo: sl()
+  ));
 
   // Usecase
   sl.registerLazySingleton(() => ac.Signup(repositories: sl()));
@@ -96,6 +108,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => qi.SubmitQuiz(repositories: sl()));
   sl.registerLazySingleton(() => po.Get(repositories: sl()));
   sl.registerLazySingleton(() => po.Submit(repositories: sl()));
+  sl.registerLazySingleton(() => co.Get(repositories: sl()));
+  sl.registerLazySingleton(() => co.Submit(repositories: sl()));
+  sl.registerLazySingleton(() => co.GetInfo(repositories: sl()));
 
   // Repositories
   sl.registerLazySingleton<ac.Repositories>(() => ac.RepositoriesImpl(
@@ -119,6 +134,10 @@ Future<void> init() async {
     remoteData: sl(),
     coreCacheData: sl()
   ));
+  sl.registerLazySingleton<co.Repositories>(() => co.RepositoriesImpl(
+      remoteData: sl(),
+      coreCacheData: sl()
+  ));
 
   // Data
   sl.registerLazySingleton<ac.RemoteData>(() => ac.RemoteDataImpl(
@@ -134,6 +153,7 @@ Future<void> init() async {
   sl.registerLazySingleton<CoreCacheData>(() => CoreCacheDataImpl(sharedPreferences: sl()));
   sl.registerLazySingleton<qi.RemoteData>(() => qi.RemoteDataImpl(dio: sl()));
   sl.registerLazySingleton<po.RemoteData>(() => po.RemoteDataImpl(dio: sl()));
+  sl.registerLazySingleton<co.RemoteData>(() => co.RemoteDataImpl(dio: sl()));
 
 
 
