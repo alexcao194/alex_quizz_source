@@ -15,11 +15,12 @@ class HomeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var width = (size.height > size.width ? size.width : size.height);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: size.width * 0.4,
-        width: size.width * 0.4,
+        height: width * 0.4,
+        width: width * 0.4,
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15.0)

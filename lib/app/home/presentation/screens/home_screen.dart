@@ -20,47 +20,49 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: HomeAppBar(context: context),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                HomeItem(
-                  header: const Icon(Icons.check),
-                  label: 'Check in',
-                  onTap: () {
-                    AppRouter.push(const CheckInScreen());
-                  },
-                ),
-                HomeItem(
-                    header: const Icon(Icons.poll_outlined),
-                    label: 'Poll',
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  HomeItem(
+                    header: const Icon(Icons.check),
+                    label: 'Check in',
                     onTap: () {
-                      BlocProvider.of<PollBloc>(context).add(PollEventGet());
+                      AppRouter.push(const CheckInScreen());
                     },
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                HomeItem(
-                    header: const Icon(Icons.quiz),
-                    label: 'Quiz',
+                  ),
+                  HomeItem(
+                      header: const Icon(Icons.poll_outlined),
+                      label: 'Poll',
+                      onTap: () {
+                        BlocProvider.of<PollBloc>(context).add(PollEventGet());
+                      },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  HomeItem(
+                      header: const Icon(Icons.quiz),
+                      label: 'Quiz',
+                      onTap: () {
+                        BlocProvider.of<QuizBloc>(context).add(const QuizEventGetResult());
+                      }),
+                   HomeItem(
+                      header: const Icon(Icons.question_mark),
+                      label: 'Contest',
                     onTap: () {
-                      BlocProvider.of<QuizBloc>(context).add(const QuizEventGetResult());
-                    }),
-                 HomeItem(
-                    header: const Icon(Icons.question_mark),
-                    label: 'Contest',
-                  onTap: () {
-                      BlocProvider.of<TestBloc>(context).add(const TestEventGetInfo());
-                  },
-                ),
-              ],
-            ),
-          ],
+                        BlocProvider.of<TestBloc>(context).add(const TestEventGetInfo());
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

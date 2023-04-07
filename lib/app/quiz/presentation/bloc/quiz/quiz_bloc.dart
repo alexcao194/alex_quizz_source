@@ -95,7 +95,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
               builder: (context) {
                 return AlertDialog(
                   title: const Text('Quiz'),
-                  content: const Text("When starting to do the test will not be finished, do you want to continue?"),
+                  content: const Text("When starting to do the quiz will not be stopped, do you want to continue?"),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () => Navigator.pop(context, 'Cancel'),

@@ -50,6 +50,7 @@ class FillBlankQuiz extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 50.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: size.height * 0.08),
                   const Text('Hoàn thành câu', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700)),
@@ -70,13 +71,9 @@ class FillBlankQuiz extends StatelessWidget {
                         children: [
                           Wrap(
                             crossAxisAlignment: WrapCrossAlignment.center,
-                            children: testState is TestStateGenerateDone
-                                ? testState.test[test]
-                                : [
-                              const CircularProgressIndicator()
-                            ]
+                            children: testState.test[test]
                           ),
-                          SizedBox(height: size.height * 0.04)
+                          SizedBox(height: size.height * 0.04, width: double.maxFinite)
                         ],
                       ),
                     ),
